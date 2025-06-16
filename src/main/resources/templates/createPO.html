@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Purchase Order</title>
+</head>
+<body>
+
+<label>Purchase Order Number</label>
+<p th:text="${poNumber}"></p>
+
+<label>Item Id</label>
+<p th:text="${itemId}"></p>
+
+<label>Item Name</label>
+<p th:text="${itemName}"></p>
+
+<label>Item Quantity</label>
+<p th:text="${itemQuantity}"></p>
+
+<form method="post" action="/newPo">
+<label for="supplierAndPrice" >Supplier</label>
+<select id="supplierAndPrice" name="supplierAndPrice">
+<option disabled selected>Select a supplier and Price</option>
+    <option th:each="sfppObject:${listofSfppObject}"
+            th:value="${sfppObject.sfppId.supplierId + ',' + sfppObject.price}"
+            th:text="${sfppObject.sfppId.supplierId  + ' - ' + sfppObject.price} "
+    >
+    </option>
+
+
+</select>
+    <br>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

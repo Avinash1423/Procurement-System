@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Purchase Requisition</title>
+</head>
+<body>
+
+<form method="post" action="/purReqData">
+<label for="item" >Item</label>
+<select name="item" id="item">
+
+<option disabled selected>Choose an Item </option>
+<option
+  th:each="item:${itemPickList}"
+  th:value="${item.itemCode}"
+  th:text="${item.itemName + '(' + item.unitOfMeasure + ')'}"
+>
+
+</option>
+</select>
+
+  <label for="quantity">Quantity</label>
+  <input type="text" name="quantity" id="quantity">
+
+  <br>
+  <br>
+
+<button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login Page</title>
+</head>
+<body>
+
+<h1>Admin Login Page</h1>
+
+
+    <form th:action="@{/validateLogin}" method="post">
+
+    <label for="adminId">Admin Id</label>
+    <input type="text" name="adminId" id="adminId" required>
+
+    <label for="adminPassword">Admin Password</label>
+    <input type="password" name="adminPassword" id="adminPassword" required>
+
+    <button type="submit">Submit</button>
+
+    <div th:if="${accountDoesNotExistError}" class="error-message">
+        <p th:text="${accountDoesNotExistError}"></p>
+    </div>
+    <br>
+    <div th:if="${passwordIncorrectError}" class="error-message">
+        <p th:text="${passwordIncorrectError}"></p>
+    </div>
+    <br>
+    <div th:if="${emptyFieldError}" class="error-message">
+        <p th:text="${emptyFieldError}"></p>
+    </div>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier for Purchase Part</title>
+</head>
+<body>
+<form  action="/SfppReturn"    method="post" >
+
+    <label for="chooseItem"> Choose an item</label>
+    <select name="chooseItem"  id="chooseItem">
+      <option disabled selected>Choose an item</option>
+        <option
+                th:each="item:${itemPickList}"
+                th:value="${item.itemCode}"
+                th:text="${item.itemCode + '-' + item.itemName}">
+        </option>
+    </select>
+
+    <label for="chooseSupplier">Choose a Supplier</label>
+    <select name="chooseSupplier" id="chooseSupplier">
+        <option disabled selected>Choose a Supplier</option>
+        <option
+             th:each="supplier:${supplierPickList}"
+             th:value="${supplier.supplierId}"
+             th:text="${supplier.supplierId + '-' + supplier.name} "
+        >
+        </option>
+    </select>
+    <label for="price">Price</label>
+    <input type="number" name="price" id="price">
+
+    <br> <br>
+
+    <button type="Submit">Create New Link</button>
+
+<div th:if="${linkExistsError}" class="error-message">
+    <p th:text="${linkExistsError}"></p>
+</div>
+
+</form>
+<br>
+<br>
+
+
+<form action="/destroyLink" method="post" >
+
+    <table border="2">
+        <tr>
+            <td>Select</td>
+            <td>Item Code</td>
+            <td>Item Name</td>
+            <td>Supplier Id</td>
+            <td>Supplier Name</td>
+            <td>Item Price</td>
+        </tr>
+
+        <tr th:each="link:${newSfppTable}">
+            <td>
+                <input type="radio" name="link" th:value="${link.itemCode + '-' + link.supplierId}"/>
+            </td>
+
+            <td th:text="${link.itemCode}"></td>
+            <td th:text="${link.itemName}"></td>
+            <td th:text="${link.supplierId}"></td>
+            <td th:text="${link.name}"></td>
+            <td th:text="${link.price}"></td>
+
+        </tr>
+
+        <button type="Submit">DELETE LINK</button>
+
+    </table>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<br>
+<br>
+<br>
+<form method="post" action="/processPurReq">
+<table border="2">
+    <tr>
+        <th>Select</th>
+        <th>Pur Req Id</th>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>RaisedBy</th>
+    </tr>
+    <tr th:each="req : ${listOfReqs}">
+
+        <td>
+            <input type="radio" name="selectedReqId" th:value="${req.purReqId}"/>
+        </td>
+
+        <td th:text="${req.purReqId}"></td>
+        <td th:text="${req.reqdate}"></td>
+        <td th:text="${req.item}"></td>
+        <td th:text="${req.quantity}"></td>
+        <td th:text="${req.status}"></td>
+        <td th:text="${req.raisedBy}"></td>
+
+    </tr>
+
+</table>
+    <button type="submit" name="action" value="approve">Approve</button>
+
+    <button type="submit" name="action" value="disapprove">Disapprove</button>
+</form>
+</body>
+</html>

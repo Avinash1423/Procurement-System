@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier</title>
+</head>
+<body>
+<h2>Supplier Details </h2>
+<br>
+<h4> Basic Details</h4>
+<p> Suppler Id    : <span th:text="${supplierId}"> </span> <button>Update</button> </p>
+<p> Supplier Name : <span th:text="${name}"> </span> <button>Update</button></p>
+<p> Email         : <span th:text="${email}"> </span> <button>Update</button> </p>
+<p> Phone Number  : <span th:text="${phoneNumber}"> </span>><button>Update</button></p>
+<br>
+<br>
+
+<form action="/deleteSupplier" method="post">
+    <input type="hidden" name="supplierId"  th:value="${supplierId}">
+<button>Delete Supplier</button>
+</form>
+
+<!--<h4> Address</h4>-->
+<!--<p> Line 1    :  </p>-->
+<!--<p> Line 2    :  </p>-->
+<!--<p> Province  :  </p>-->
+<!--<p> District  :  </p>-->
+<!--<p> City      :  </p>-->
+<!--<button>Update Address</button>-->
+
+</body>
+</html>

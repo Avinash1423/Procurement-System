@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Suppliers</title>
+</head>
+<body>
+<br>
+<button onclick="window.location.href='/addNewSupplier'">Add New Supplier</button>
+<br>
+<br>
+
+<form action="/goToSupplier" method="post" >
+    <br>
+    <button type="submit">Go To Supplier</button>
+    <br>
+    <table border="2">
+        <tr>
+         <th>Select</th>
+         <th>Supplier Id</th>
+         <th>Name</th>
+         <th>Email</th>
+         <th>PhoneNumber</th>
+        </tr>
+
+        <tr th:each="supplier:${listOfSuppliers}">
+         <td>
+             <input type="radio" name="supplierId" th:value="${supplier.supplierId}"/>
+         </td>
+            <td th:text="${supplier.supplierId}"></td>
+            <td th:text="${supplier.name}"></td>
+            <td th:text="${supplier.email}"></td>
+            <td th:text="${supplier.phoneNumber}"></td>
+        </tr>
+    </table>
+
+    <div th:if="${supplierNotSelectedError}" class="error-message">
+        <p th:text="${supplierNotSelectedError}" > </p>
+    </div>
+
+</form>
+</body>
+</html>

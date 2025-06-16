@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee View</title>
+</head>
+<body>
+
+<form method="get" action="/newPurReq">
+<button type="submit" >Create new Purchase Requisitions</button>
+</form>
+
+<br>
+<br>
+<b>My Purchase Requisitions </b>
+
+<table border="3">
+    <tr>
+
+        <th>Pur Req Id</th>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>RaisedBy</th>
+    </tr>
+    <tr th:each="req:${listOfPurReqs}">
+
+        <td th:text="${req.purReqId}"></td>
+        <td th:text="${req.reqdate}"></td>
+        <td th:text="${req.item}"></td>
+        <td th:text="${req.quantity}"></td>
+        <td th:text="${req.status}"></td>
+        <td th:text="${req.raisedBy}"></td>
+
+    </tr>
+
+</table>
+<br>
+
+</body>
+</html>

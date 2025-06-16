@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoiced Purchase Orders</title>
+</head>
+<body>
+
+<div class="header-bar">
+    <span>
+    <h2 style="display:inline">Invoiced Purchase Orders</h2>
+        </span>
+
+</div>
+<br>
+<br>
+
+    <table border="2">
+        <tr>
+
+            <th>PO Number</th>
+            <th>Item Id</th>
+            <th>Item Name</th>
+            <th>Item Quantity</th>
+            <th>Supplier Id</th>
+            <th>Unit Price</th>
+            <th>Status</th>
+            <th>PO Date</th>
+        </tr>
+
+            <td th:text="${Po.poNumber}"></td>
+            <td th:text="${Po.itemId}"></td>
+            <td th:text="${Po.itemName}"></td>
+            <td th:text="${Po.itemQuantity}"></td>
+            <td th:text="${Po.supplierId}"></td>
+            <td th:text="${Po.unitPrice}"></td>
+            <td th:text="${Po.status}"></td>
+            <td th:text="${Po.poDate}"></td>
+        </tr>
+    </table>
+
+
+
+</body>
+</html>

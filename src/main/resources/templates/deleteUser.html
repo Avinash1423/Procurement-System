@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+</head>
+<body>
+
+<form th:action="@{/deleteUser}" method="post" >
+
+<label for="empId">Employee Id</label>
+<input type="number" name="empId" id="empId" required>
+
+<br><br>
+
+<label for="password">Password </label>
+<input type="password" name="password" id="password"  required>
+
+<br><br>
+
+<label for="confirmPassword">Confirm Password</label>
+<input type="password" name="confirmPassword" id="confirmPassword" required>
+
+<br><br>
+
+    <button type="submit">Confirm</button>
+
+    </form>
+<br>
+
+<div th:if="${passwordMismatchError}" class="error-message">
+    <p th:text="${passwordMismatchError}"> </p>
+</div>
+<br>
+
+<div th:if="${userDoesNotExistError}" class="error-message">
+    <p th:text="${userDoesNotExistError}"></p>
+</div>
+<br>
+
+<div th:if="${passwordIncorrectError}" class="error-message">
+    <p th:text="${passwordIncorrectError}"> </p>
+</div>
+
+<br>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Item</title>
+</head>
+<body>
+
+<form th:action="@{/addNewItem}" method="post">
+<label for="itemName">Item Name</label>
+<input type="text" name="itemName"  id="itemName" required>
+
+<br>
+
+    <label for="uom">Unit Of Measure</label>
+    <select name="uom" id="uom">
+        <option disabled selected>Choose a UoM</option>
+        <option>Pieces</option>
+        <option>KiloGrams</option>
+        <option>Liters</Option>
+    </select>
+
+    <button type="submit"> Add</button>
+</form>
+
+<div th:if="${fieldIncompleteError}" class="error-message">
+    <p th:text="${fieldIncompleteError}"></p>
+</div>
+
+
+</body>
+</html>

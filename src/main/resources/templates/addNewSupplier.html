@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/addNewSupplier" method="post" th:obejct="${SupplierObject}" >
+<label for="name">SupplierName</label>
+<input type="text" name="name" id="name" required> <br><br>
+
+<label for="phoneNumber">Phone Number</label>
+<input type="text" name="phoneNumber" id="phoneNumber" required> <br><br>
+
+<label for="email">Email</label>
+<input type="email" name="email" id="email" required><br><br>
+    <button>Add Supplier</button>
+
+</form>
+
+<div th:if="${emptyFieldError}" class="error-message">
+    <p th:text="${emptyFieldError}"></p>
+    </div>
+
+    <div th:if="${dataIntegrityError}" class="error-message">
+        <p th:text="${dataIntegrityError}"></p>
+
+</div>
+
+</body>
+</html>

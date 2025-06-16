@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Items</title>
+</head>
+<body>
+<br>
+<button onclick="window.location.href='/addNewItem'">Add Item</button>
+<br>
+<br>
+<form action="/deleteItems" method="post" th:object="${ItemList}">
+
+    <button type="submit"> Delete</button>
+    <br>
+<table border="2">
+    <tr>
+        <th>Select</th>
+        <th>Item Code</th>
+        <th>Item Name</th>
+        <th>Unit Of Measure</th>
+    </tr>
+
+    <tr th:each="item:${listOfItems}">
+    <td>
+        <input type="checkbox" th:field="*{listOfCodes}" th:value="${item.itemCode}" />
+         </td>
+        <td th:text="${item.itemCode}"></td>
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.unitOfMeasure}"></td>
+    </tr>
+
+</table>
+    </form>
+
+</body>
+</html>
