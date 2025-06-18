@@ -4,21 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-<h1>Admin Login Page</h1>
+<body class="bg-primary">
+<div class="container mt-5">
 
 
-    <form th:action="@{/validateLogin}" method="post">
+    <form th:action="@{/validateLogin}" method="post" class="bg-white rounded shadow">
 
+        <h1 class="p-2">Admin Login Page</h1>
+
+   <div class="p-1 mt-4">
     <label for="adminId">Admin Id</label>
     <input type="text" name="adminId" id="adminId" required>
+   </div>
 
+        <div class="p-1 mt-4">
     <label for="adminPassword">Admin Password</label>
     <input type="password" name="adminPassword" id="adminPassword" required>
+        </div>
 
-    <button type="submit">Submit</button>
+        <div class="p-1 mt-4 " >
+    <button class="btn btn-success" type="submit">Login</button>
+        </div>
+
 
     <div th:if="${accountDoesNotExistError}" class="error-message">
         <p th:text="${accountDoesNotExistError}"></p>
@@ -33,6 +43,6 @@
     </div>
 </form>
 
-
+</div>
 </body>
 </html>

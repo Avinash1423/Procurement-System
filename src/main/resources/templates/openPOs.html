@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Open Purchase Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-black">
 
-<div class="header-bar">
-    <span>
-    <h2 style="display:inline">Open Purchase Orders</h2>
+<br>
+    <span style="float: right">
+    <button class="btn btn-primary " onclick="window.location.href='/deliveredPos'">View Delivered Purchase Orders</button>
         </span>
-    <span style="float: right;">
-    <button onclick="window.location.href='/deliveredPos'">View Delivered Pos</button>
-        </span>
-</div>
+    <br>
+    <br>
+
 <span style="float: right">
-    <button onclick="window.location.href='/viewInvoicedPos'">View Invoiced Pos</button>
+    <button  class="btn btn-warning " onclick="window.location.href='/viewInvoicedPos'">View Invoiced Purchase Orders </button>
         </span>
 <br>
 <br>
 
-<form method="post" action="/poAction">
-<table border="2">
+<form method="post" action="/poAction" class="p-2 bg-light rounded shadow">
+
+    <h2 style="display:inline">Open Purchase Orders</h2>
+    <br>
+    <br>
+<table class="table table-stripped table-bordered">
     <tr>
         <th>Select</th>
         <th>PO Number</th>
@@ -49,7 +53,7 @@
 </tr>
 </table>
 
-<button type="submit">Confirm Receipt</button>
+<button class="btn btn-success" type="submit">Confirm Receipt</button>
 </form>
 
 </body>

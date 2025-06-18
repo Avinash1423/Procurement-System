@@ -1,6 +1,7 @@
 package com.proc.system.Controller;
 
 import com.proc.system.Model.*;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class SfppContoller {
     @PostMapping("/SfppReturn")
     public String supplierForPurchasePart(@RequestParam(required = false) String chooseItem, @RequestParam(required = false) String chooseSupplier, @RequestParam(required = false) String price, Model model) {
 
-        if (chooseItem==null || chooseSupplier==null || price.isEmpty()) {
+        if (chooseItem==null || chooseSupplier==null || price==null) {
 
             model.addAttribute("itemPickList", itemRepository.findAll());
             model.addAttribute("supplierPickList", supplierobjectrepository.findAll());
@@ -35,19 +36,21 @@ public class SfppContoller {
             return "/supplierForPurchasePart";
 
         } else {
-//            System.out.println("FROM supplierForPurchasePart " + chooseItem);
-//            System.out.println("FROM supplierForPurchasePart " + chooseSupplier);
-//            System.out.println("FROM supplierForPurchasePart " + price);
+
 
             Integer itemCode = Integer.parseInt(chooseItem);
             Integer SupplierId = Integer.parseInt(chooseSupplier);
             Integer numberPrice = Integer.parseInt(price);
 
+            ItemObject item=itemRepository.findById(itemCode).get();//new
+            SupplierObject supplier=supplierobjectrepository.findById(SupplierId).get();
+
+
             SfppId sfppId = new SfppId(itemCode, SupplierId);
 
 
             if (!sfppRepository.findById(sfppId).isPresent()) {
-                SfppObject sfppObject = new SfppObject(itemCode, SupplierId, numberPrice);
+                SfppObject sfppObject = new SfppObject(item, supplier, numberPrice);
                 sfppRepository.save(sfppObject);
 
                 model.addAttribute("itemPickList", itemRepository.findAll());
@@ -71,20 +74,28 @@ public class SfppContoller {
     }
 
     @PostMapping("/destroyLink")
-    public String destroyLink(@RequestParam String link){
+    public String destroyLink(@RequestParam String link, HttpSession session,Model model){
 
-        System.out.println("From destroyLink "+link);
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
+
         String[] parts=link.split("-");
 
         Integer itemCode=Integer.parseInt(parts[0]);
         Integer supplierId=Integer.parseInt(parts[1]);
 
-        System.out.println("From destroyLink "+itemCode  +supplierId);
+
 
         SfppId sfppid=new SfppId(itemCode,supplierId);
         sfppRepository.deleteById(sfppid);
 
-        return "temp";
+        model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
+        model.addAttribute("itemPickList",itemRepository.findAll());
+        model.addAttribute("supplierPickList",supplierobjectrepository.findAll());
+        return "supplierForPurchasePart";
 
 
     }

@@ -10,11 +10,11 @@ import java.util.Objects;
 public class SfppId implements Serializable {
 
     public Integer getItemCode() {
-        return ItemCode;
+        return itemCode;
     }
 
     @Column(name="ITEMCODE")
-    private Integer ItemCode;
+    private Integer itemCode;
 
     public Integer getSupplierId() {
         return supplierId;
@@ -24,7 +24,7 @@ public class SfppId implements Serializable {
     private Integer supplierId;
 
     public void setItemCode(Integer itemCode) {
-        ItemCode = itemCode;
+        itemCode = itemCode;
     }
 
 
@@ -33,8 +33,8 @@ public class SfppId implements Serializable {
     }
 
 
-    public SfppId(Integer ItemCode,Integer supplierId){
-        this.ItemCode=ItemCode;
+    public SfppId(Integer itemCode,Integer supplierId){
+        this.itemCode=itemCode;
         this.supplierId=supplierId;
 
     }
@@ -47,12 +47,12 @@ public class SfppId implements Serializable {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SfppId sfppId = (SfppId) o;
-        return Objects.equals(ItemCode, sfppId.ItemCode) && Objects.equals(supplierId, sfppId.supplierId);
+        return Objects.equals(itemCode, sfppId.itemCode) && Objects.equals(supplierId, sfppId.supplierId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ItemCode, supplierId);
+        return Objects.hash(itemCode, supplierId);
     }
 
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:text="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Supplier Email</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-primary">
+
+<div class=" p-3 container mt-5 bg-light rounded shadow">
+<form action="/newSupplierEmail" method="post">
+<label for="email" ><b>Enter New Email for Supplier having Id <span th:text="${selectedSupplier}"></span></b></label>
+  <input type="email" name="email" id="email">
+<button class="btn btn-success" type="submit">Change Email</button>
+</form>
+
+    <div th:if="${dataIntegrityError}" class=" p-1 error-message">
+        <p th:text="${dataIntegrityError}"></p>
+    </div>
+</div>
+
+</body>
+</html>

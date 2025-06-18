@@ -1,6 +1,7 @@
 package com.proc.system.Controller;
 
 import com.proc.system.Model.PurchaseOrderObjectRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,12 @@ public class viewPurchaseOrderController {
     }
 
     @GetMapping("/viewPurchaseOrder")
-    public String viewPurchaseOrder(Model model){
+    public String viewPurchaseOrder(Model model, HttpSession session){
+        String role=(String)session.getAttribute("role");
 
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
 
      model.addAttribute("openPos",purchaseOrderObjectRepository.findByStatus("Open"));
 
@@ -27,9 +32,14 @@ public class viewPurchaseOrderController {
     }
 
     @PostMapping("/poAction")
-    public String poAction(@RequestParam(required = false) Integer poNumber, Model model){
+    public String poAction(@RequestParam(required = false) Integer poNumber, Model model,HttpSession session){
 
 
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
         if(poNumber==null){
 
             model.addAttribute("openPos",purchaseOrderObjectRepository.findByStatus("Open"));
@@ -46,7 +56,13 @@ public class viewPurchaseOrderController {
         }
     }
     @GetMapping("/deliveredPos")
-   public String deliveredPos(Model model){
+   public String deliveredPos(Model model,HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
 
         model.addAttribute("DeliveredPos",purchaseOrderObjectRepository.findByStatus("Delivered"));
 
@@ -55,8 +71,13 @@ public class viewPurchaseOrderController {
    }
 
     @PostMapping("/posInvoiced")
-    public String posInvoiced(@RequestParam(required = false) Integer poNumber, Model model){
+    public String posInvoiced(@RequestParam(required = false) Integer poNumber, Model model,HttpSession session){
 
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
 
         if(poNumber==null){
 
@@ -75,7 +96,13 @@ public class viewPurchaseOrderController {
     }
 
     @GetMapping("/viewInvoicedPos")
-    public String viewInvoicedPos(Model model){
+    public String viewInvoicedPos(Model model,HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
 
         model.addAttribute("InvoicedPos",purchaseOrderObjectRepository.findByStatus("Invoiced"));
         return "/InvoicedPos";

@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New User</title>
-</head>
-<body>
-<form th:action="@{/getNewUserDetails}" method="post" th:object="${NewUserForm}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+</head>
+
+<body class="bg-success">
+<div class="container  mt-5">
+<form th:action="@{/getNewUserDetails}" method="post" th:object="${NewUserForm}" class="p-4 bg-white shadow rounded">
+
+    <h3>Add New User</h3>
+    <br>
     <label for="empId">Employee Id</label>
     <input type="number" id="empId" name="empId" required>
 
@@ -30,9 +36,9 @@
     <label for="confirmPassword">Confirm Password</label>
     <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-    <br><br>
+    <br><br><br>
 
-    <button type="submit">ADD USER</button>
+    <button class="btn btn-primary" type="submit">ADD USER</button>
 
     <br><br>
 
@@ -49,5 +55,6 @@
 </div>
     
 </form>
+</div>
 </body>
 </html>

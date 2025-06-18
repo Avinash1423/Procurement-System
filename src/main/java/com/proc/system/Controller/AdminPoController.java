@@ -24,8 +24,14 @@ public class AdminPoController {
     }
 
     @GetMapping("/adminCreateNewPo")
-    public String adminCreateNewPo(Model model){
+    public String adminCreateNewPo(Model model ,HttpSession session){
 
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
         model.addAttribute("itemPickList", itemRepository.findAll());
         return "adminNewPo";
 
@@ -33,6 +39,13 @@ public class AdminPoController {
 
     @PostMapping("/newAdminPo")
     public String newAdminPo(@RequestParam(required = false) Integer itemId, @RequestParam(required = false) String quantity, Model model, HttpSession session) {
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
+
 
         if (itemId == null || quantity == null) {
 

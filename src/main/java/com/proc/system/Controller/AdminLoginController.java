@@ -4,6 +4,7 @@ import com.proc.system.Model.AdminObject;
 import com.proc.system.Model.AdminRepository;
 import com.proc.system.Model.GetAllUsers;
 import com.proc.system.Model.ValidateAdminLoginDetails;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class AdminLoginController {
 
     @PostMapping("/validateLogin")
 
-    public String getAdminLoginDetails(@RequestParam String adminId, @RequestParam String adminPassword ,Model model) {
+    public String getAdminLoginDetails(@RequestParam String adminId, @RequestParam String adminPassword , Model model, HttpSession session) {
 
 
         if(adminId.isEmpty()||adminPassword.isEmpty()){
@@ -56,8 +57,9 @@ public class AdminLoginController {
             return "adminLoginPage";
         }
         else
-
+            session.setAttribute("role", "Admin");
             return  "adminView";
+
         }
 
 

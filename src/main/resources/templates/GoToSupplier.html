@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Supplier</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h2>Supplier Details </h2>
+<body class="bg-black">
+<h2 class="text-white">Supplier Details </h2>
 <br>
+<div class=" p-2 bg-light rounded shadow">
 <h4> Basic Details</h4>
-<p> Suppler Id    : <span th:text="${supplierId}"> </span> <button>Update</button> </p>
-<p> Supplier Name : <span th:text="${name}"> </span> <button>Update</button></p>
-<p> Email         : <span th:text="${email}"> </span> <button>Update</button> </p>
-<p> Phone Number  : <span th:text="${phoneNumber}"> </span>><button>Update</button></p>
+<p> Suppler Id    : <span th:text="${supplierId}">
+<p> Supplier Name : <span th:text="${name}"> </span> <button onclick="window.location.href='/updateSupplierName'" class="btn btn-success">Update</button></p>
+<p> Email         : <span th:text="${email}"> </span> <button onclick="window.location.href='/updateSupplierEmail' " class="btn btn-success">Update</button> </p>
+<p> Phone Number  : <span th:text="${phoneNumber}"> </span><button  onclick="window.location.href='/updateSupplierPhone'" class="btn btn-success">Update</button></p>
 <br>
 <br>
-
+</div>
+<br>
 <form action="/deleteSupplier" method="post">
     <input type="hidden" name="supplierId"  th:value="${supplierId}">
-<button>Delete Supplier</button>
+<button class="btn btn-danger">Delete Supplier</button>
 </form>
 
 <!--<h4> Address</h4>-->

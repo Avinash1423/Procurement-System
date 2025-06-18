@@ -25,7 +25,7 @@ public class DeleteUser {
 
         String actualPassword= newUserForm.getPassword();
 
-        System.out.println("From verifyPassword: " + "Password" + "  "  +actualPassword);
+
 
         return bCryptPasswordEncoder.matches(password,actualPassword);
 

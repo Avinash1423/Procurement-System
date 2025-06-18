@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Items</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<br>
-<button onclick="window.location.href='/addNewItem'">Add Item</button>
-<br>
-<br>
+<body class="bg-black">
+
+<div class="p-3">
+<button class="btn btn-primary" onclick="window.location.href='/addNewItem'">Add New Item</button>
+    </div>
+<div class="p-3 bg-light rounded shadow">
 <form action="/deleteItems" method="post" th:object="${ItemList}">
 
-    <button type="submit"> Delete</button>
+    <button  class="btn btn-danger"type="submit"> Delete Item</button>
     <br>
-<table border="2">
+    <br>
+<table class="table table-bordered table-stripped">
     <tr>
         <th>Select</th>
         <th>Item Code</th>
@@ -32,6 +35,6 @@
 
 </table>
     </form>
-
+</div>
 </body>
 </html>

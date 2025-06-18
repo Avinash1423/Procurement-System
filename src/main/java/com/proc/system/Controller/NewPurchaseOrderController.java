@@ -26,6 +26,11 @@ public class NewPurchaseOrderController {
 
     @PostMapping("/newPo")
    public String newPo(@RequestParam(required = false) String supplierAndPrice, HttpSession session, Model model){
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
 
         Integer poNumber= (Integer)session.getAttribute("poNumber");
         Integer itemId= (Integer) session.getAttribute("itemId");
@@ -67,12 +72,6 @@ public class NewPurchaseOrderController {
         
         Integer price=Integer.parseInt(split[1].trim());
         
-      System.out.println(poNumber);
-      System.out.println(itemId);
-      System.out.println(itemName);
-      System.out.println(itemQuantity);
-      System.out.println(supplierId);
-      System.out.println(price);
 
 
 
@@ -80,7 +79,7 @@ public class NewPurchaseOrderController {
 
         purchaseOrderObjectRepository.save(purchaseOrderObject);
 
-         //System.out.println("APPROVE  "+selectedReqId + " is "+ action);
+
 
         purReqObjectRepository.updateStatusAsApproved(selectedReqId);
 

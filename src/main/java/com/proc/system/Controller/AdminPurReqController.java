@@ -26,11 +26,17 @@ public class AdminPurReqController {
     @PostMapping("/processPurReq")
     public String ProcessPurReq(@RequestParam(required = false) String action, @RequestParam(required = false) Integer selectedReqId, Model model, HttpSession session){
 
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")) {
+            return "/adminLoginPage";
+        }
 
         if(action==null||selectedReqId==null){
-
-            model.addAttribute("listOfReqs",purReqObjectRepository.findAll());
+            model.addAttribute("listOfReqs",purReqObjectRepository.findByStatus("Pending"));
             return"adminPurReq";
+
+
         }
       if (action.equals("approve")){
 
@@ -64,9 +70,7 @@ public class AdminPurReqController {
 
          return "createPO";
 
-          //update Approved in Database(NOT HERE)
-         // purReqObjectRepository.updateStatusAsApproved(selectedReqId);
-        //  System.out.println("APPROVE  "+selectedReqId + " is "+ action);
+
 
 
 
@@ -74,12 +78,16 @@ public class AdminPurReqController {
       }
       if(action.equals("disapprove")){
           purReqObjectRepository.updateStatusAsCancelled(selectedReqId);
-          System.out.println("DISAPPROVE  "+selectedReqId + " is "+ action);
+
+
+          model.addAttribute("listOfReqs",purReqObjectRepository.findAll());
+          return"adminPurReq";
 
       }
 
+        model.addAttribute("listOfReqs",purReqObjectRepository.findByStatus("Pending"));
+        return"adminPurReq";
 
-        return "temp";
     }
 
 

@@ -26,7 +26,12 @@ public class PurReqController {
 
     @GetMapping("/newPurReq")
     public String newPurReq(Model model, HttpSession session) {
+        String role=(String)session.getAttribute("role");
 
+        if ( role==null||!role.equals("Employee")) {
+            return "/EmployeeLoginPage";
+
+        }
 
         model.addAttribute("itemPickList", itemRepository.findAll());
         return "newPurReq";
@@ -35,6 +40,12 @@ public class PurReqController {
     @PostMapping("/purReqData")
     public String purReqData(@RequestParam(required = false) Integer item, @RequestParam(required = false) String quantity, Model model, HttpSession session) {
 
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Employee")) {
+            return "/EmployeeLoginPage";
+
+        }
         if (item==null || quantity==null) {
 
             model.addAttribute("itemPickList", itemRepository.findAll());

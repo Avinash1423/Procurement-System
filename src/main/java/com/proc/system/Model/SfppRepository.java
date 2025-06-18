@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface SfppRepository extends JpaRepository<SfppObject,SfppId>{
 
-    @Query( "SELECT  new com.proc.system.Model.SfppDisplayDTO(s.sfppId.ItemCode,i.itemName,s.sfppId.supplierId,sup.name,s.price) "+
+    @Query( "SELECT  new com.proc.system.Model.SfppDisplayDTO(s.sfppId.itemCode,i.itemName,s.sfppId.supplierId,sup.name,s.price) "+
             "FROM SfppObject s " +
-            "LEFT JOIN ItemObject i ON s.sfppId.ItemCode=i.itemCode "+
+            "LEFT JOIN ItemObject i ON s.sfppId.itemCode=i.itemCode "+
             "LEFT JOIN SupplierObject  sup ON s.sfppId.supplierId=sup.supplierId")
     List<SfppDisplayDTO> getAllSfppViews();
 
@@ -26,13 +26,16 @@ public interface SfppRepository extends JpaRepository<SfppObject,SfppId>{
 //    LEFT JOIN suppliers  sup
 //    ON s.supplierId=sup.supplierId;
 
- @Query("SELECT new  com.proc.system.Model.SfppObject(s.sfppId.ItemCode,s.sfppId.supplierId,s.price) "+
+ @Query("SELECT new  com.proc.system.Model.SfppObject(s.sfppId.itemCode,s.sfppId.supplierId,s.price) "+
         "FROM SfppObject s "+
-         "WHERE s.sfppId.ItemCode = :Id "
+         "WHERE s.sfppId.itemCode = :Id "
  )
  List<SfppObject> findByitem(@Param("Id")Integer itemId);
 
     //SELECT * FROM SfppObject WHERE itemId=
 
+    void deleteBySfppId_supplierId(Integer sfppIdSupplierId);
+
+    void deleteBySfppId_itemCode(Integer sfppIdItemCode);
 
 }

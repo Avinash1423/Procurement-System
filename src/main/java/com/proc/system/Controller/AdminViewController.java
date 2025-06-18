@@ -2,6 +2,8 @@ package com.proc.system.Controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.proc.system.Model.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,14 +30,23 @@ public class AdminViewController {
     }
 
    @GetMapping("/ManageUsers")
-    public String manageUsers(){
+    public String manageUsers(HttpSession session){
+
+
 
         return"ManageUsers";
 
     }
 
     @GetMapping("/ManageItems")
-    public String ManageItems(Model model){
+    public String ManageItems(Model model,HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")){
+            return "/adminLoginPage";
+
+        }
 
         List<ItemObject> listOfItems=itemRepository.findAll();
        // return listOfItems;
@@ -46,20 +57,34 @@ public class AdminViewController {
     }
 
     @GetMapping("/ManageSuppliers")
-    public String ManageSuppliers(Model model){
+    public String ManageSuppliers(Model model ,HttpSession session) {
 
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")){
+            return "/adminLoginPage";
+
+        }
        List<SupplierObject> listOfSuppliers=supplierobjectrepository.findAll();
 
-       //System.out.println("FROM ManageSuppliers:  "+listOfSuppliers);
+
 
        model.addAttribute("listOfSuppliers",listOfSuppliers);
-       //model.addAttribute("SupplierObject",new SupplierObject());
+
 
         return "ManageSuppliers";
 
     }
     @GetMapping("/Sfpp")
-    public String Sfpp(Model model){
+    public String Sfpp(Model model , HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")){
+            return "/adminLoginPage";
+
+        }
 
         model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
         model.addAttribute("itemPickList",itemRepository.findAll());
@@ -69,7 +94,14 @@ public class AdminViewController {
     }
 
     @GetMapping("/ViewPurReqs")
-    public String ViewPurReqs(Model model){
+    public String ViewPurReqs(Model model,HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")){
+            return "/adminLoginPage";
+
+        }
 
         model.addAttribute("listOfReqs",purReqObjectRepository.findByStatus("Pending"));
         return"adminPurReq";

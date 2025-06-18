@@ -2,6 +2,7 @@ package com.proc.system.Controller;
 
 import com.proc.system.Model.SupplierObject;
 import com.proc.system.Model.SupplierObjectRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,14 @@ public class AddNewSupplierController {
     }
 
 @PostMapping("/addNewSupplier")
-public  String addNewSupplier(@RequestParam String name, @RequestParam String email, @RequestParam String phoneNumber , Model model){
+public  String addNewSupplier(@RequestParam String name, @RequestParam String email, @RequestParam String phoneNumber , Model model, HttpSession session){
 
+
+    String role=(String)session.getAttribute("role");
+
+    if ( role==null||!role.equals("Admin")) {
+        return "/adminLoginPage";
+    }
         if(name.isEmpty()||email.isEmpty()||phoneNumber.isEmpty()){
 
             model.addAttribute("emptyFieldError","Please Enter All Required field");

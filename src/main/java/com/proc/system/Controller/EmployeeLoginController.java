@@ -34,6 +34,8 @@ public class EmployeeLoginController {
     public String getEmployeeLoginDetails(@RequestParam String empId, @RequestParam String empPassword, Model model, HttpSession session) {
 
 
+
+
         if (empId.isEmpty() || empPassword.isEmpty()) {
 
             model.addAttribute("emptyFieldError", "Complete all required Fields");
@@ -57,6 +59,7 @@ public class EmployeeLoginController {
 
                 session.setAttribute("LoggedInEmployee",EmpIdInt);
                  model.addAttribute("listOfPurReqs",purReqObjectRepository.findByRaisedBy(EmpIdInt));
+            session.setAttribute("role", "Employee");
                 return "EmployeeView";
         } catch (NumberFormatException e) {
             model.addAttribute("accountDoesNotExistError", "Account doesn't exist. Try again.");

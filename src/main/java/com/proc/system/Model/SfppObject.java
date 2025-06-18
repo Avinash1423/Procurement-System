@@ -33,7 +33,7 @@ public class SfppObject {
     }
 
     @ManyToOne
-    @MapsId("ItemCode")
+    @MapsId("itemCode")
     @JoinColumn(name="ITEMCODE" ,insertable = false,updatable = false)
     private ItemObject item;
 
@@ -62,6 +62,16 @@ public class SfppObject {
       sfppId.setItemCode(itemCode);
       sfppId.setSupplierId(supplierId);
       this.price=price;
+
+    }
+
+    public SfppObject(ItemObject item,SupplierObject supplier,Integer price){
+
+        this.price=price;
+        this.item=item;
+        this.supplier=supplier;
+        this.sfppId= new SfppId(item.getItemCode(), supplier.getSupplierId());
+
 
     }
 

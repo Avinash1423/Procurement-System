@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-black">
 
-<br>
-<br>
-<br>
-<form method="post" action="/processPurReq">
-<table border="2">
+<h2 class="p-2 text-white" >Purchase Requisitions</h2>
+<form method="post" action="/processPurReq" class="p-2 bg-white rounded shadow">
+
+<table class="table table-bordered table-striped">
     <tr>
         <th>Select</th>
         <th>Pur Req Id</th>
@@ -36,9 +36,9 @@
     </tr>
 
 </table>
-    <button type="submit" name="action" value="approve">Approve</button>
+    <button class="btn btn-success" type="submit" name="action" value="approve">Approve</button>
 
-    <button type="submit" name="action" value="disapprove">Disapprove</button>
+    <button class="btn btn-danger" type="submit" name="action" value="disapprove">Disapprove</button>
 </form>
 </body>
 </html>
