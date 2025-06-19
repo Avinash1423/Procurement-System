@@ -6,7 +6,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-black">
-
+<span style="float:right">
+   <button class="btn btn-warning" onclick="window.location.href='/adminHome'">Home</button>
+</span>
 <div class="p-2">
 <h2 class="text-white">Supplier for Purchase Part</h2>
 </div>
@@ -68,6 +70,10 @@
             <td>
                 <input type="radio" name="link" th:value="${link.itemCode + '-' + link.supplierId}"/>
             </td>
+            <div th:if="${sfppDeleteError}" class="error-message text-red">
+                <p th:text="${sfppDeleteError}"></p>
+            </div>
+
 
             <td th:text="${link.itemCode}"></td>
             <td th:text="${link.itemName}"></td>

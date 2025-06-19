@@ -52,8 +52,14 @@ public class DeleteUserDetails {
 
              if(deleteUser.verifyPassword(empId,password)){
 
-                 newUserFormRepository.deleteById(empId);
+                 try {
+                     newUserFormRepository.deleteById(empId);
+                 }catch(Exception e)
+                 {
 
+                     model.addAttribute("userDeleteError","Cannot delete: User may be associated with a purchase requisition or other records.");
+                     return"deleteUser";
+                 }
                  List<NewUserForm> listOfAllUsers= getAllUsers.getAllUsers();
                  model.addAttribute( "listOfAllUsers",listOfAllUsers);
                  //  model.addAttribute("listObject",new NewUserForm());

@@ -88,9 +88,17 @@ public class SfppContoller {
         Integer supplierId=Integer.parseInt(parts[1]);
 
 
-
         SfppId sfppid=new SfppId(itemCode,supplierId);
-        sfppRepository.deleteById(sfppid);
+
+        try {
+            sfppRepository.deleteById(sfppid);
+        }catch ( Exception e){
+            model.addAttribute("sfppDeleteError","Cannot Delete:Link is Associated with other Records");
+            model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
+            model.addAttribute("itemPickList",itemRepository.findAll());
+            model.addAttribute("supplierPickList",supplierobjectrepository.findAll());
+            return "supplierForPurchasePart";
+        }
 
         model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
         model.addAttribute("itemPickList",itemRepository.findAll());

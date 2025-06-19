@@ -77,11 +77,11 @@ public class PurReqObject {
     Integer raisedBy;
 
       @ManyToOne
-      @JoinColumn(name="ITEM",insertable = false,updatable = false)
+      @JoinColumn(name="ITEM",insertable = false,updatable = false,foreignKey=@ForeignKey(name="fk_PR_item"))
       ItemObject itemFromPurReq;
 
       @ManyToOne
-      @JoinColumn(name="RAISEDBY",insertable = false,updatable = false)
+      @JoinColumn(name="RAISEDBY",insertable = false,updatable = false,foreignKey=@ForeignKey(name="fk_PR_user"))
       NewUserForm user;
 
     public PurReqObject(Integer item,Integer Quantity,Integer raisedBy){

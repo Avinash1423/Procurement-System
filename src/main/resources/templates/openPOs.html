@@ -8,15 +8,14 @@
 <body class="bg-black">
 
 <br>
-    <span style="float: right">
-    <button class="btn btn-primary " onclick="window.location.href='/deliveredPos'">View Delivered Purchase Orders</button>
-        </span>
-    <br>
-    <br>
+<span style="float:right">
+   <button class="btn btn-warning" onclick="window.location.href='/adminHome'">Home</button>
+</span>
 
-<span style="float: right">
+    <button class="btn btn-primary " onclick="window.location.href='/deliveredPos'">View Delivered Purchase Orders</button>
+
     <button  class="btn btn-warning " onclick="window.location.href='/viewInvoicedPos'">View Invoiced Purchase Orders </button>
-        </span>
+
 <br>
 <br>
 
@@ -43,10 +42,10 @@
     <input type="radio" name="poNumber" th:value="${Po.poNumber}"/>
      </td>
     <td th:text="${Po.poNumber}"></td>
-    <td th:text="${Po.itemId}"></td>
+    <td th:text="${Po.itemFromPurOrder.itemCode}"></td>
     <td th:text="${Po.itemName}"></td>
     <td th:text="${Po.itemQuantity}"></td>
-    <td th:text="${Po.supplierId}"></td>
+    <td th:text="${Po.supplierFromPurOrder.supplierId}"></td>
     <td th:text="${Po.unitPrice}"></td>
     <td th:text="${Po.status}"></td>
     <td th:text="${Po.poDate}"></td>

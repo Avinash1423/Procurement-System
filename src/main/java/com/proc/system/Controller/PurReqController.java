@@ -60,4 +60,18 @@ public class PurReqController {
         return "newPurReq";
 
     }
+
+    @GetMapping("/LogoutEmp")
+    public String LogOut(HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Employee")){
+            return "/EmployeeLoginPage";
+
+        }
+
+        session.setAttribute("role",null);
+        return"MainPage";
+    }
 }

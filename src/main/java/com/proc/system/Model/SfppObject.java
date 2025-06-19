@@ -34,7 +34,7 @@ public class SfppObject {
 
     @ManyToOne
     @MapsId("itemCode")
-    @JoinColumn(name="ITEMCODE" ,insertable = false,updatable = false)
+    @JoinColumn(name="ITEMCODE" ,insertable = false,updatable = false,foreignKey = @ForeignKey(name="fk_sfpp_item"))
     private ItemObject item;
 
     public SupplierObject getSupplier() {
@@ -43,7 +43,7 @@ public class SfppObject {
 
     @ManyToOne
     @MapsId("supplierId")
-    @JoinColumn(name="SUPPLIERID",insertable = false,updatable = false)
+    @JoinColumn(name="SUPPLIERID",insertable = false,updatable = false,foreignKey = @ForeignKey(name="fk_sfpp_sup"))
     private SupplierObject supplier;
 
 

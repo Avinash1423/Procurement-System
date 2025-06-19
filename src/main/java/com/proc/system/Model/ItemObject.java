@@ -30,6 +30,9 @@ public class ItemObject {
      @OneToMany(mappedBy = "itemFromPurReq")
      List<PurReqObject> listofPurReqs=new ArrayList<>();
 
+     @OneToMany(mappedBy = "itemFromPurOrder")
+     List<PurchaseOrderObject> listofPurOrders=new ArrayList<>();
+
     public Integer getItemCode() {
         return itemCode;
     }

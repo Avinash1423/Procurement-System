@@ -13,15 +13,19 @@ import java.util.List;
 @Controller
 public class NewPurchaseOrderController {
 
+    private final ItemRepository itemRepository;
+    private final SupplierObjectRepository supplierObjectRepository;
     PurchaseOrderObjectRepository  purchaseOrderObjectRepository;
     PurReqObjectRepository purReqObjectRepository;
     SfppRepository sfppRepository;
 
-    public  NewPurchaseOrderController(PurchaseOrderObjectRepository  purchaseOrderObjectRepository, PurReqObjectRepository purReqObjectRepository,SfppRepository sfppRepository){
+    public  NewPurchaseOrderController(PurchaseOrderObjectRepository  purchaseOrderObjectRepository, PurReqObjectRepository purReqObjectRepository, SfppRepository sfppRepository, ItemRepository itemRepository, SupplierObjectRepository supplierObjectRepository){
 
         this.purchaseOrderObjectRepository=purchaseOrderObjectRepository;
         this.purReqObjectRepository=purReqObjectRepository;
         this.sfppRepository=sfppRepository;
+        this.itemRepository = itemRepository;
+        this.supplierObjectRepository = supplierObjectRepository;
     }
 
     @PostMapping("/newPo")
@@ -73,9 +77,11 @@ public class NewPurchaseOrderController {
         Integer price=Integer.parseInt(split[1].trim());
         
 
+       ItemObject item=itemRepository.findById(itemId).get();
+       SupplierObject supplier=supplierObjectRepository.findById(supplierId).get();
 
+        PurchaseOrderObject purchaseOrderObject=new PurchaseOrderObject(poNumber,item,itemName,itemQuantity,supplier,price);
 
-        PurchaseOrderObject purchaseOrderObject=new PurchaseOrderObject(poNumber,itemId,itemName,itemQuantity,supplierId,price);
 
         purchaseOrderObjectRepository.save(purchaseOrderObject);
 

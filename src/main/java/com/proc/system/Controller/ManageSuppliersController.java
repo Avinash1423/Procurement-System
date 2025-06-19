@@ -71,16 +71,22 @@ public class ManageSuppliersController {
      }
 
       @PostMapping("/deleteSupplier")
-      public String deleteSupplier(@RequestParam Integer supplierId,HttpSession session){
+      public String deleteSupplier(@RequestParam Integer supplierId,HttpSession session,Model model){
 
           String role=(String)session.getAttribute("role");
 
           if ( role==null||!role.equals("Admin")) {
               return "/adminLoginPage";
           }
-          sfppRepository.deleteBySfppId_supplierId(supplierId);
-        supplierObjectRepository.deleteById(supplierId);
 
+      try {
+          sfppRepository.deleteBySfppId_supplierId(supplierId);
+          supplierObjectRepository.deleteById(supplierId);
+        } catch(Exception e)
+      {
+          model.addAttribute("SupplierDeleteError","Cannot delete: Supplier may be associated with a purchase order or other records.");
+
+      }
 
         return"redirect:/ManageSuppliers";
 

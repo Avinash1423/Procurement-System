@@ -107,4 +107,34 @@ public class AdminViewController {
         return"adminPurReq";
 
     }
+
+    @GetMapping("/Logout")
+    public String LogOut(HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")){
+            return "/adminLoginPage";
+
+        }
+
+        session.setAttribute("role",null);
+        return"MainPage";
+    }
+
+    @GetMapping("/adminHome")
+    public String adminHome(HttpSession session){
+
+        String role=(String)session.getAttribute("role");
+
+        if ( role==null||!role.equals("Admin")){
+            return "/adminLoginPage";
+
+        }
+
+        return "adminView";
+
+    }
 }
+
+

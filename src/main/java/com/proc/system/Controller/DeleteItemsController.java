@@ -1,13 +1,12 @@
 package com.proc.system.Controller;
 
-import com.proc.system.Model.DeleteItems;
-import com.proc.system.Model.ItemList;
-import com.proc.system.Model.ItemRepository;
-import com.proc.system.Model.SfppRepository;
+import com.proc.system.Model.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,38 +23,52 @@ public class DeleteItemsController {
 
     private final SfppRepository sfppRepository;
     DeleteItems deleteItems;
+    ItemRepository itemRepository;
 
 
-    public DeleteItemsController(DeleteItems deleteItems, SfppRepository sfppRepository){
+    public DeleteItemsController(DeleteItems deleteItems, SfppRepository sfppRepository, ItemRepository itemRepository) {
 
-        this.deleteItems=deleteItems;
+        this.deleteItems = deleteItems;
         this.sfppRepository = sfppRepository;
-    }
+        this.itemRepository = itemRepository;
 
+    }
 
 
     @PostMapping("/deleteItems")
-    public String deleteItems(@ModelAttribute ItemList itemList, HttpSession session ){
+    public String deleteItems(@RequestParam Integer itemToDelete, HttpSession session, Model model) {
 
-        String role=(String)session.getAttribute("role");
+        System.out.println(itemToDelete);
+        String role = (String) session.getAttribute("role");
 
-        if ( role==null||!role.equals("Admin")) {
+        if (role == null || !role.equals("Admin")) {
             return "/adminLoginPage";
         }
 
-        List<Integer> listOfCodes=itemList.getListOfCodes();
+     //   List<Integer> listOfCodes = itemList.getListOfCodes();
+
+        try {
+                 sfppRepository.deleteBySfppId_itemCode(itemToDelete);
+                 itemRepository.deleteById(itemToDelete);
 
 
-        for(Integer code:listOfCodes){
-            sfppRepository.deleteBySfppId_itemCode(code);
+        } catch (Exception  e) {
 
+            e.printStackTrace();
+            List<ItemObject> listOfItems = itemRepository.findAll();
+            model.addAttribute("ItemDeleteError", "Cannot delete: Item/s may be associated with a purchase requisition or other records.");
+            model.addAttribute("listOfItems", listOfItems);
+            model.addAttribute("ItemList", new ItemList());
+            return "ManageItems";
         }
 
-        deleteItems.deletelist(listOfCodes);
+        // deleteItems.deletelist(listOfCodes);
 
-
-        return "redirect:/ManageItems";
+        List<ItemObject> listOfItems = itemRepository.findAll();
+        model.addAttribute("ItemDeleteError", "Cannot delete: Item/s may be associated with a purchase requisition or other records.");
+        model.addAttribute("listOfItems", listOfItems);
+        model.addAttribute("ItemList", new ItemList());
+        return "ManageItems";
 
     }
-
 }

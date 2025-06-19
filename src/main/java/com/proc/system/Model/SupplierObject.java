@@ -34,6 +34,8 @@ public class SupplierObject {
     @OneToMany(mappedBy = "supplier")
     private List<SfppObject> supplierOffers=new ArrayList<>();
 
+    @OneToMany(mappedBy="supplierFromPurOrder")
+     List<PurchaseOrderObject> listOfSuppliers=new ArrayList<>();
 
     public SupplierObject(String name,String email,String phoneNumber){
       this.email=email;

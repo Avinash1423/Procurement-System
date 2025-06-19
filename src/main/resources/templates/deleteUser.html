@@ -6,9 +6,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-primary">
-<div  class="container mt-5">
+<div  class="container mt-5 p-4 bg-light rounded shadow">
 
-<form th:action="@{/deleteUser}" method="post"  class="p-4 bg-light rounded shadow">
+<form th:action="@{/deleteUser}" method="post"  >
 
     <h2 class="p-3">Delete User</h2>
 
@@ -30,23 +30,25 @@
     <div>
     <button class="btn btn-danger" type="submit">Confirm</button>
     </div>
-
-    </form>
-
-
-<div th:if="${passwordMismatchError}" class="error-message">
+</form>
+<div th:if="${passwordMismatchError}" class="error-message text-black">
     <p th:text="${passwordMismatchError}"> </p>
 </div>
 <br>
 
-<div th:if="${userDoesNotExistError}" class="error-message">
+<div th:if="${userDoesNotExistError}" class="error-message text-black">
     <p th:text="${userDoesNotExistError}"></p>
 </div>
 <br>
 
-<div th:if="${passwordIncorrectError}" class="error-message">
+<div th:if="${passwordIncorrectError}" class="error-message text-black">
     <p th:text="${passwordIncorrectError}"> </p>
 </div>
+
+    <div th:if="${userDeleteError}" class="error-message text-black">
+        <p th:text="${userDeleteError}"> </p>
+    </div>
+
 
 <br>
 </div>
