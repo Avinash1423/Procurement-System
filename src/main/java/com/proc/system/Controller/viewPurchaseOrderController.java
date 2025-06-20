@@ -28,7 +28,7 @@ public class viewPurchaseOrderController {
 
      model.addAttribute("openPos",purchaseOrderObjectRepository.findByStatus("Open"));
 
-        return "/openPOs";
+        return "openPOs";
     }
 
     @PostMapping("/poAction")
@@ -44,14 +44,14 @@ public class viewPurchaseOrderController {
 
             model.addAttribute("openPos",purchaseOrderObjectRepository.findByStatus("Open"));
 
-            return "/openPOs";
+            return "openPOs";
 
         }
         else {
 
             purchaseOrderObjectRepository.updateAsDelivered(poNumber);
             model.addAttribute("openPos",purchaseOrderObjectRepository.findByStatus("Open"));
-            return "/openPOs";
+            return "openPOs";
 
         }
     }
