@@ -28,7 +28,7 @@ public  String addNewSupplier(@RequestParam String name, @RequestParam String em
     String role=(String)session.getAttribute("role");
 
     if ( role==null||!role.equals("Admin")) {
-        return "/adminLoginPage";
+        return "adminLoginPage";
     }
         if(name.isEmpty()||email.isEmpty()||phoneNumber.isEmpty()){
 
@@ -43,7 +43,7 @@ public  String addNewSupplier(@RequestParam String name, @RequestParam String em
          }catch(Exception e){
 
              model.addAttribute("dataIntegrityError","Data Entered is Invalid,try again.");
-             return "/addNewSupplier";
+             return "addNewSupplier";
          }
 
         }

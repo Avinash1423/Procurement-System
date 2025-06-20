@@ -28,12 +28,12 @@ public class AddItemsController {
         String role = (String) session.getAttribute("role");
 
         if (role == null || !role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
             if (itemName.isEmpty() || uom.isEmpty()) {
                 model.addAttribute("fieldIncompleteError", "Complete All  Required field");
-                return "/addNewItem";
+                return "addNewItem";
 
             } else {
                 ItemObject newItem = new ItemObject(itemName, uom);

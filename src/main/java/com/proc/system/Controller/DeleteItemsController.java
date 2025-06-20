@@ -42,7 +42,7 @@ public class DeleteItemsController {
         String role = (String) session.getAttribute("role");
 
         if (role == null || !role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
      //   List<Integer> listOfCodes = itemList.getListOfCodes();

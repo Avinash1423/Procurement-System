@@ -33,7 +33,7 @@ public class SfppContoller {
             model.addAttribute("itemPickList", itemRepository.findAll());
             model.addAttribute("supplierPickList", supplierobjectrepository.findAll());
             model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
-            return "/supplierForPurchasePart";
+            return "supplierForPurchasePart";
 
         } else {
 
@@ -56,7 +56,7 @@ public class SfppContoller {
                 model.addAttribute("itemPickList", itemRepository.findAll());
                 model.addAttribute("supplierPickList", supplierobjectrepository.findAll());
                 model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
-                return "/supplierForPurchasePart";
+                return "supplierForPurchasePart";
             }
             else {
 
@@ -64,7 +64,7 @@ public class SfppContoller {
                 model.addAttribute("supplierPickList", supplierobjectrepository.findAll());
                 model.addAttribute("itemPickList", itemRepository.findAll());
                 model.addAttribute("newSfppTable",sfppRepository.getAllSfppViews());
-                return "/supplierForPurchasePart";
+                return "supplierForPurchasePart";
             }
 //            model.addAttribute("itemPickList", itemRepository.findAll());
 //            model.addAttribute("supplierPickList", supplierobjectrepository.findAll());

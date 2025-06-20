@@ -30,7 +30,7 @@ public class AdminPoController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
         model.addAttribute("itemPickList", itemRepository.findAll());
         return "adminNewPo";
@@ -43,7 +43,7 @@ public class AdminPoController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
 

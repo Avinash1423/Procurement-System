@@ -29,7 +29,7 @@ public class AdminPurReqController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
         if(action==null||selectedReqId==null){

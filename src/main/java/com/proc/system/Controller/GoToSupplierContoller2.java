@@ -23,7 +23,7 @@ public class GoToSupplierContoller2 {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
         try {
@@ -47,7 +47,7 @@ public class GoToSupplierContoller2 {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
 try {
@@ -69,7 +69,7 @@ try {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
 try {

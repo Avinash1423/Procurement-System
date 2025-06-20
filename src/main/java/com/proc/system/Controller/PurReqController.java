@@ -29,7 +29,7 @@ public class PurReqController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Employee")) {
-            return "/EmployeeLoginPage";
+            return "EmployeeLoginPage";
 
         }
 
@@ -43,7 +43,7 @@ public class PurReqController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Employee")) {
-            return "/EmployeeLoginPage";
+            return "EmployeeLoginPage";
 
         }
         if (item==null || quantity==null) {
@@ -67,7 +67,7 @@ public class PurReqController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Employee")){
-            return "/EmployeeLoginPage";
+            return "EmployeeLoginPage";
 
         }
 

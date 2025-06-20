@@ -27,7 +27,7 @@ public class ManageUsersController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
         return "addNewUser";
     }
@@ -37,7 +37,7 @@ public class ManageUsersController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
         return "deleteUser";
     }
@@ -48,7 +48,7 @@ public class ManageUsersController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
         List<NewUserForm> listOfAllUsers= getAllUsers.getAllUsers();
         model.addAttribute( "listOfAllUsers",listOfAllUsers);

@@ -38,7 +38,7 @@ public class viewPurchaseOrderController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
         if(poNumber==null){
 
@@ -61,12 +61,12 @@ public class viewPurchaseOrderController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
         model.addAttribute("DeliveredPos",purchaseOrderObjectRepository.findByStatus("Delivered"));
 
-        return "/deliveredPos";
+        return "deliveredPos";
 
    }
 
@@ -76,21 +76,21 @@ public class viewPurchaseOrderController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
         if(poNumber==null){
 
             model.addAttribute("openPos",purchaseOrderObjectRepository.findByStatus("Delivered"));
 
-            return "/deliveredPos";
+            return "deliveredPos";
 
         }
         else {
 
             purchaseOrderObjectRepository.updateAsInvoiced(poNumber);
             model.addAttribute("DeliveredPos",purchaseOrderObjectRepository.findByStatus("Delivered"));
-            return "/deliveredPos";
+            return "deliveredPos";
 
         }
     }
@@ -101,11 +101,11 @@ public class viewPurchaseOrderController {
         String role=(String)session.getAttribute("role");
 
         if ( role==null||!role.equals("Admin")) {
-            return "/adminLoginPage";
+            return "adminLoginPage";
         }
 
         model.addAttribute("InvoicedPos",purchaseOrderObjectRepository.findByStatus("Invoiced"));
-        return "/InvoicedPos";
+        return "InvoicedPos";
     }
 }
 
