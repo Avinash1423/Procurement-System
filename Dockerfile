@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:23-jdk
-COPY --from=build target/system-0.0.1-SNAPSHOT.jar system.jar
+COPY --from=build target/system-0.0.1-SNAPSHOT.jar system-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "system.jar"]
+ENTRYPOINT ["java", "-jar", "system-0.0.1-SNAPSHOT.jar"]
