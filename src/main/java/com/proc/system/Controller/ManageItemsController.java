@@ -12,6 +12,7 @@ public class ManageItemsController {
 
     }
 
+
     @GetMapping("/addNewItem")
     public String addNewItem(HttpSession session){
         String role=(String)session.getAttribute("role");
